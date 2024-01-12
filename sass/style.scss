@@ -1,32 +1,40 @@
+@use '_colors' as c;
+
 * {
-	margin: 0;
 	padding: 0;
-	background-color: #8a8a8a;
+	margin: 0;
+	box-sizing: border-box;
+}
+body {
+	background-color: c.$background;
+	overflow-x: hidden;
+}
+.test {
+	width: 100vw;
+	height: 100vh;
+	background-color: c.$background;
+}
+.blue {
+	background-color: #333;
+}
+header {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
 	height: 100vh;
 }
-
 .nav {
 	&__dynamic-island {
 		display: flex;
+		position: fixed;
 		align-items: center;
 		justify-content: space-around;
-		position: sticky;
-		top: 25px;
-		left: 50%;
-		transform: translate(-50%);
-		width: 250px;
-		height: 50px;
-		background-color: rgba(0, 0, 0, 0.788);
-		border-radius: 150px;
-		transition: width 0.5s, height 0.5s 0.5s;
-	}
-	&__dynamic-island:hover {
-		width: 800px;
+		width: 60%;
 		height: 80px;
-	}
-	&__dynamic-island:hover > &__nav-item {
-		pointer-events: all;
-		opacity: 1;
+		border-radius: 150px;
+		background-color: c.$nav;
+		transition: width 0.5s, height 0.5s 0.5s;
 	}
 	&__nav-item {
 		display: flex;
@@ -34,15 +42,13 @@
 		justify-content: center;
 		height: 75px;
 		width: 75px;
-		color: rgb(218, 218, 218);
 		background-color: transparent;
+		color: #fff;
 		text-align: center;
 		text-decoration: none;
 		text-transform: uppercase;
 		pointer-events: none;
 		opacity: 1;
-		opacity: 0;
-		transition: opacity 0.5s 0.5s;
 	}
 }
 .fa-solid {
@@ -52,4 +58,10 @@
 	border-radius: 50%;
 	width: 80%;
 	height: 80%;
+	background-color: c.$cta;
+}
+.minimalized {
+	top: 25px;
+	width: 250px;
+	height: 50px;
 }
