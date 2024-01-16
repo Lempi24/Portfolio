@@ -1,3 +1,5 @@
+let wasAtTop = true;
+
 const nav = document.querySelector('#dynamic-island');
 
 const setNavStyles = (
@@ -26,17 +28,17 @@ const setNavStyles = (
 		element.style.opacity = opacity;
 		element.style.pointerEvents = eventPointer;
 	});
-	console.log(immediate);
 };
 
 nav.addEventListener('click', () => {
-	setNavStyles('60%', '80px', '1', 'all', false);
+	if (window.scrollY === 0) return;
+	setNavStyles('80%', '80px', '1', 'all', false);
 });
 
 document.addEventListener('click', (event) => {
 	const isClickInsideNav = nav.contains(event.target);
 
-	if (!isClickInsideNav) {
+	if (!isClickInsideNav && window.scrollY !== 0) {
 		setNavStyles('', '', '0', 'none', true);
 	}
 });
@@ -46,7 +48,13 @@ window.addEventListener('scroll', () => {
 
 	if (isAtTop) {
 		nav.classList.remove('minimalized');
+		setNavStyles('80%', '80px', '1', 'all', false);
+		wasAtTop = true;
 	} else {
+		if (wasAtTop) {
+			setNavStyles('', '', '0', 'none', true);
+			wasAtTop = false;
+		}
 		nav.classList.add('minimalized');
 	}
 });
